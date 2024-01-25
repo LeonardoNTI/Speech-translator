@@ -31,42 +31,36 @@ def program():
     converted_audio.save("hello.mp3")
     playsound.playsound("hello.mp3")
 
+languages = ['af', "afrikaans", 'sq', 'albanian', 'am', 'amharic', 'ar', 'arabic', 'hy', 'armenian', 'az', 'azerbaijani', 'eu', 'basque', 'be', 'belarusian', 'bn', 'bengali', 'bs', 'bosnian', 'bg', 'bulgarian', 'ca', 'catalan', 'ceb', 'cebuano', 'ny', 'chichewa', 'zh-cn', 'chinese (simplified)', 'zh-tw', 'chinese (traditional)', 'co', 'corsican', 'hr', 'croatian', 'cs', 'czech', 'da', 'danish', 'nl', 'dutch', 'en', 'english', 'eo', 'esperanto', 'et', 'estonian', 'tl', 'filipino', 'fi', 'finnish', 'fr', 'french', 'fy', 'frisian', 'gl', 'galician', 'ka', 'georgian', 'de', 'german', 'el', 'greek', 'gu', 'gujarati', 'ht', 'haitian creole', 'ha', 'hausa', 'haw', 'hawaiian', 'iw', 'hebrew', 'he', 'hebrew', 'hi', 'hindi', 'hmn', 'hmong', 'hu', 'hungarian', 'is', 'icelandic', 'ig', 'igbo', 'id', 'indonesian', 'ga', 'irish', 'it', 'italian', 'ja', 'japanese', 'jw', 'javanese', 'kn', 'kannada', 'kk', 'kazakh', 'km', 'khmer', 'ko', 'korean', 'ku', 'kurdish (kurmanji)', 'ky', 'kyrgyz', 'lo', 'lao', 'la', 'latin', 'lv', 'latvian', 'lt', 'lithuanian', 'lb', 'luxembourgish', 'mk', 'macedonian', 'mg', 'malagasy', 'ms', 'malay', 'ml', 'malayalam', 'mt', 'maltese', 'mi', 'maori', 'mr', 'marathi', 'mn', 'mongolian', 'my', 'myanmar (burmese)', 'ne', 'nepali', 'no', 'norwegian', 'or', 'odia', 'ps', 'pashto', 'fa', 'persian', 'pl', 'polish', 'pt', 'portuguese', 'pa', 'punjabi', 'ro', 'romanian', 'ru', 'russian', 'sm', 'samoan', 'gd', 'scots gaelic', 'sr', 'serbian', 'st', 'sesotho', 'sn', 'shona', 'sd', 'sindhi', 'si', 'sinhala', 'sk', 'slovak', 'sl', 'slovenian', 'so', 'somali', 'es', 'spanish', 'su', 'sundanese', 'sw', 'swahili', 'sv', 'swedish', 'tg', 'tajik', 'ta', 'tamil', 'te', 'telugu', 'th', 'thai', 'tr', 'turkish', 'uk', 'ukrainian', 'ur', 'urdu', 'ug', 'uyghur', 'uz', 'uzbek', 'vi', 'vietnamese', 'cy', 'welsh', 'xh', 'xhosa', 'yi', 'yiddish', 'yo', 'yoruba', 'zu', 'zulu']
 
-def get_input_language():
+def get_input_language(list_of_languages):
+
     global input_language
     req_input_language = input("Please select the language you want to translate from: ")
 
-
-    if req_input_language == "italian" or req_input_language == "Italian" or req_input_language == "it":
-         input_language = "it"
-    elif req_input_language == "swedish" or req_input_language == "Swedish" or req_input_language == "sv":
-         input_language = "sv"
-    elif req_input_language == "english" or req_input_language == "English" or req_input_language == "en":
-         input_language = "en"
+    if req_input_language in list_of_languages:
+        language_to_index = list_of_languages.index(req_input_language) 
+        input_language = (list_of_languages[language_to_index - 1])
+        return input_language
     else:
         print(f"We do not support {req_input_language}, please try again")
-        get_input_language()
+        get_input_language(languages)
+        
 
-    return input_language
-
-def get_target_language():
+def get_target_language(list_of_languages):
     global target_language
-    req_target_language = input("please select the language you want to translate to: ")
+    req_target_language = input("Please select the language you want to translate to: ")
 
-    if req_target_language == "italian" or req_target_language == "Italian" or req_target_language == "it":
-         target_language = "it"
-    elif req_target_language == "swedish" or req_target_language == "Swedish" or req_target_language == "sv":
-         target_language = "sv"
-    elif req_target_language == "english" or req_target_language == "English" or req_target_language == "en":
-         target_language = "en"
+    if req_target_language in list_of_languages:
+        language_to_index = list_of_languages.index(req_target_language) 
+        target_language = (list_of_languages[language_to_index - 1])
+        return target_language
     else:
-        print(f"We do not support {req_target_language}, please try again)")
-        get_target_language()
-
-    return target_language
+        print(f"We do not support {req_target_language}, please try again")
+        get_target_language(languages)
 
 
 print ("Hello and welcome to the speech translator.")
-get_target_language()
-get_input_language()
+get_target_language(languages)
+get_input_language(languages)
 program()
