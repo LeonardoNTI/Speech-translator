@@ -71,6 +71,7 @@ def get_target_language(list_of_languages):
 
 
 print ("Hello and welcome to the speech translator.")
+
 get_target_language(languages)
 get_input_language(languages)
 program()
