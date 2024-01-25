@@ -8,6 +8,16 @@ import gtts
 
 input_language = ""
 target_language = ""
+languages = ['af', "afrikaans", 'sq', 'albanian', 'am', 'amharic', 'ar', 'arabic', 'hy', 'armenian', 'az', 'azerbaijani', 'eu', 'basque', 'be', 'belarusian', 'bn', 'bengali', 'bs', 'bosnian', 'bg', 'bulgarian', 'ca', 'catalan', 'ceb', 'cebuano', 'ny', 'chichewa', 'zh-cn', 'chinese', 'zh-tw', 'chinese (traditional)', 'co', 'corsican', 'hr', 'croatian', 'cs', 'czech', 'da', 'danish', 'nl', 'dutch', 'en', 'english', 'eo', 'esperanto', 'et', 'estonian', 'tl', 'filipino', 'fi', 'finnish', 'fr', 'french', 'fy', 'frisian', 'gl', 'galician', 'ka', 'georgian', 'de', 'german', 'el', 'greek', 'gu', 'gujarati', 'ht', 'haitian creole', 'ha', 'hausa', 'haw', 'hawaiian', 'iw', 'hebrew', 'he', 'hebrew', 'hi', 'hindi', 'hmn', 'hmong', 'hu', 'hungarian', 'is', 'icelandic', 'ig', 'igbo', 'id', 'indonesian', 'ga', 'irish', 'it', 'italian', 'ja', 'japanese', 'jw', 'javanese', 'kn', 'kannada', 'kk', 'kazakh', 'km', 'khmer', 'ko', 'korean', 'ku', 'kurdish (kurmanji)', 'ky', 'kyrgyz', 'lo', 'lao', 'la', 'latin', 'lv', 'latvian', 'lt', 'lithuanian', 'lb', 'luxembourgish', 'mk', 'macedonian', 'mg', 'malagasy', 'ms', 'malay', 'ml', 'malayalam', 'mt', 'maltese', 'mi', 'maori', 'mr', 'marathi', 'mn', 'mongolian', 'my', 'myanmar (burmese)', 'ne', 'nepali', 'no', 'norwegian', 'or', 'odia', 'ps', 'pashto', 'fa', 'persian', 'pl', 'polish', 'pt', 'portuguese', 'pa', 'punjabi', 'ro', 'romanian', 'ru', 'russian', 'sm', 'samoan', 'gd', 'scots gaelic', 'sr', 'serbian', 'st', 'sesotho', 'sn', 'shona', 'sd', 'sindhi', 'si', 'sinhala', 'sk', 'slovak', 'sl', 'slovenian', 'so', 'somali', 'es', 'spanish', 'su', 'sundanese', 'sw', 'swahili', 'sv', 'swedish', 'tg', 'tajik', 'ta', 'tamil', 'te', 'telugu', 'th', 'thai', 'tr', 'turkish', 'uk', 'ukrainian', 'ur', 'urdu', 'ug', 'uyghur', 'uz', 'uzbek', 'vi', 'vietnamese', 'cy', 'welsh', 'xh', 'xhosa', 'yi', 'yiddish', 'yo', 'yoruba', 'zu', 'zulu']
+
+def speech_to_text():
+    recognizer = speech_recognition.Recognizer()
+    with sr.Microphone() as source:
+        voice = recognizer.listen(source)
+        listen = recognizer.recognize_google(voice, language= "en")
+        print(listen)
+
+        return listen.lower()
 
 def translate_text(data):
     translator = googletrans.Translator()
@@ -22,8 +32,6 @@ def program():
         listen = recognizer.recognize_google(voice, language=input_language)
         print(listen)
 
-
-
     translator = googletrans.Translator()
     translate = translator.translate(listen, dest=target_language)
     print(translate.text)
@@ -31,12 +39,12 @@ def program():
     converted_audio.save("hello.mp3")
     playsound.playsound("hello.mp3")
 
-languages = ['af', "afrikaans", 'sq', 'albanian', 'am', 'amharic', 'ar', 'arabic', 'hy', 'armenian', 'az', 'azerbaijani', 'eu', 'basque', 'be', 'belarusian', 'bn', 'bengali', 'bs', 'bosnian', 'bg', 'bulgarian', 'ca', 'catalan', 'ceb', 'cebuano', 'ny', 'chichewa', 'zh-cn', 'chinese (simplified)', 'zh-tw', 'chinese (traditional)', 'co', 'corsican', 'hr', 'croatian', 'cs', 'czech', 'da', 'danish', 'nl', 'dutch', 'en', 'english', 'eo', 'esperanto', 'et', 'estonian', 'tl', 'filipino', 'fi', 'finnish', 'fr', 'french', 'fy', 'frisian', 'gl', 'galician', 'ka', 'georgian', 'de', 'german', 'el', 'greek', 'gu', 'gujarati', 'ht', 'haitian creole', 'ha', 'hausa', 'haw', 'hawaiian', 'iw', 'hebrew', 'he', 'hebrew', 'hi', 'hindi', 'hmn', 'hmong', 'hu', 'hungarian', 'is', 'icelandic', 'ig', 'igbo', 'id', 'indonesian', 'ga', 'irish', 'it', 'italian', 'ja', 'japanese', 'jw', 'javanese', 'kn', 'kannada', 'kk', 'kazakh', 'km', 'khmer', 'ko', 'korean', 'ku', 'kurdish (kurmanji)', 'ky', 'kyrgyz', 'lo', 'lao', 'la', 'latin', 'lv', 'latvian', 'lt', 'lithuanian', 'lb', 'luxembourgish', 'mk', 'macedonian', 'mg', 'malagasy', 'ms', 'malay', 'ml', 'malayalam', 'mt', 'maltese', 'mi', 'maori', 'mr', 'marathi', 'mn', 'mongolian', 'my', 'myanmar (burmese)', 'ne', 'nepali', 'no', 'norwegian', 'or', 'odia', 'ps', 'pashto', 'fa', 'persian', 'pl', 'polish', 'pt', 'portuguese', 'pa', 'punjabi', 'ro', 'romanian', 'ru', 'russian', 'sm', 'samoan', 'gd', 'scots gaelic', 'sr', 'serbian', 'st', 'sesotho', 'sn', 'shona', 'sd', 'sindhi', 'si', 'sinhala', 'sk', 'slovak', 'sl', 'slovenian', 'so', 'somali', 'es', 'spanish', 'su', 'sundanese', 'sw', 'swahili', 'sv', 'swedish', 'tg', 'tajik', 'ta', 'tamil', 'te', 'telugu', 'th', 'thai', 'tr', 'turkish', 'uk', 'ukrainian', 'ur', 'urdu', 'ug', 'uyghur', 'uz', 'uzbek', 'vi', 'vietnamese', 'cy', 'welsh', 'xh', 'xhosa', 'yi', 'yiddish', 'yo', 'yoruba', 'zu', 'zulu']
-
 def get_input_language(list_of_languages):
 
     global input_language
-    req_input_language = input("Please select the language you want to translate from: ")
+    print("Please say the language you want to translate from: ")
+
+    req_input_language = speech_to_text()
 
     if req_input_language in list_of_languages:
         language_to_index = list_of_languages.index(req_input_language) 
@@ -49,7 +57,9 @@ def get_input_language(list_of_languages):
 
 def get_target_language(list_of_languages):
     global target_language
-    req_target_language = input("Please select the language you want to translate to: ")
+    print("Please say the language you want to translate to: ")
+
+    req_target_language = speech_to_text()
 
     if req_target_language in list_of_languages:
         language_to_index = list_of_languages.index(req_target_language) 
