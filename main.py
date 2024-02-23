@@ -1,5 +1,4 @@
 
-
 import googletrans
 import playsound
 import speech_recognition
